@@ -37,19 +37,26 @@ export const Provider = props => {
 
     // Make the context object:
     const selectedContext = {
-        selectedDough: initDough,
-        selectedSize: initSize,
-        selectedCheese: initCheese,
-        selectedSauce: initSauce,
-        selectedTopping: initTopping,
-        selectedOrder: initOrder,
-        total: initTotal,
+        selectedDough,
+        selectedSize,
+        selectedCheese,
+        selectedSauce,
+        selectedTopping,
+        selectedOrder,
+        total,
+        setSelectedDough,
+        setSelectedSize,
+        setSelectedCheese,
+        setSelectedSauce,
+        setSelectedTopping,
+        setSelectedOrder,
+        setTotal,
         calcTotal,
         children
     }
 
     // pass the value in provider and return
-    return <Context.Provider value={selectedContext}>{...children}</Context.Provider>;
+    return <Context.Provider value={selectedContext}>{children}</Context.Provider>;
 };
 
 export const { Consumer } = Context;

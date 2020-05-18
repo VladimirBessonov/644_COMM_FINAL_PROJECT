@@ -2,7 +2,7 @@ import React from 'react'
 import Nav from '../Nav/index'
 import AddressForm from "../AddressForm";
 import OrderForm from "../OrderForm";
-import Order from "../OrderForm";
+import DisplayOrder from "../DisplayOrder";
 
 const Layout = props => {
 
@@ -29,7 +29,7 @@ const Layout = props => {
                     <OrderForm/>
                 </div>
                 <div className="col-lg-4">
-                    <OrderForm/>
+                    <DisplayOrder/>
                 </div>
             </div>
 
