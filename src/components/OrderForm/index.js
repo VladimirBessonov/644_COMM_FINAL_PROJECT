@@ -10,15 +10,20 @@ const OrderForm = props =>  {
     const {
         selectedDough, selectedSize, selectedCheese, selectedSauce, selectedTopping, selectedOrder,
         setSelectedDough, setSelectedSize, setSelectedCheese, setSelectedSauce, setSelectedTopping,
-        setSelectedOrder,
+        setSelectedOrder, calcTotal, total, setTotal
     } = selectedContext
 
+    useEffect( () => {
+        let orderTotal = calcTotal(selectedOrder)
+        setTotal(orderTotal)
+
+    })
     // Form handlers
     // submit
     const handleSubmit = (e) => {
         e.preventDefault();
         setSelectedOrder([...selectedOrder, {selectedDough, selectedSize, selectedCheese, selectedSauce, selectedTopping}])
-        console.log(selectedOrder)
+
     }
 
     const handleSelectSize = (e) => {
@@ -47,17 +52,21 @@ const OrderForm = props =>  {
     }
 
     return (
-        <div>
+
+        <div className="col-lg-4">
         <ButtonGroup aria-label="Basic example">
             {Object.entries(DOUGH).map( ([key, val]) => {
                 if (selectedDough == key) {
                     return <Button variant="secondary active" value={key} onClick={ (e)=> {
-
-                        setSelectedDough(e.target.value)
+                        let selDough = e.target.value
+                        setSelectedDough(selDough)
+                        setSelectedSize(Object.keys(SIZE[selDough])[0])
                     }}>{val}</Button>
                 } else {
                     return <Button variant="secondary" value={key} onClick={ (e)=> {
-                        setSelectedDough(e.target.value)
+                        let selDough = e.target.value
+                        setSelectedDough(selDough)
+                        setSelectedSize(Object.keys(SIZE[selDough])[0])
                     }}>{val}</Button>
                 }
             })}
@@ -68,7 +77,7 @@ const OrderForm = props =>  {
                     <Form.Control as="select" custom >
                         {Object.entries(SIZE[selectedDough])
                                 .map( ([key, val]) => {
-                            return <option value={key} >{ key} ${val}}</option>
+                            return <option value={key}> {key} {val} </option>
                         })
                         }
                     </Form.Control>

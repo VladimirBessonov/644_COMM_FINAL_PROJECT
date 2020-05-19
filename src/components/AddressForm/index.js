@@ -1,4 +1,6 @@
 import React from 'react'
+import * as ROUTES from "../../consts/routes";
+import {NavLink} from "react-router-dom";
 
 const AddressForm = props =>  {
 
@@ -9,6 +11,7 @@ const AddressForm = props =>  {
         );
     }
     return (
+        <div className="col-lg-4">
         <form id="contact-form" onSubmit={handleSubmit}>
             <div className="form-group">
                 <div className="row">
@@ -52,7 +55,9 @@ const AddressForm = props =>  {
             </div>
 
             <button type="submit" className="btn btn-primary">Submit</button>
+            <button type="submit" className="btn btn-primary"><NavLink to={ROUTES.LANDING} style={{color:'black'}}>RETURN</NavLink></button>
         </form>
+        </div>
 
     );
 

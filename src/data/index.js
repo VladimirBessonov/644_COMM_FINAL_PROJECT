@@ -1,9 +1,9 @@
 const DOUGH = { HANDTOSSED : "Hand Tossed", THINCRUST:"Thin Crust", NEWYORK:"New York Style", GLUTENFREE:"Gluten Free"}
 const SIZE = {
     HANDTOSSED: {small: 9.99, medium:12.99, large:14.99},
-    THINCRUST: {medium:11.99, large:13.99},
-    NEWYORK: {large:16.99, extralarge:19.99},
-    GLUTENFREE: {small:10.99}
+    THINCRUST: {medium : 11.99, large : 13.99},
+    NEWYORK: {large : 16.99, extralarge : 19.99},
+    GLUTENFREE: {small : 10.99}
 }
 
 const CHEESEOPTIONS = {

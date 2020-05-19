@@ -1,6 +1,8 @@
 import React, {useContext, useEffect} from 'react'
 import {Button} from "react-bootstrap";
+import {NavLink} from "react-router-dom";
 import { OrderContext } from "../../context";
+import * as ROUTES from '../../consts/routes'
 
 const DisplayOrder = props =>  {
     const selectedContext = useContext(OrderContext)
@@ -10,10 +12,10 @@ const DisplayOrder = props =>  {
         setSelectedOrder,
         calcTotal
     } = selectedContext
-
-    useEffect( () => {
-        calcTotal(selectedOrder)
-    })
+    //
+    // useEffect( () => {
+    //     calcTotal(selectedOrder)
+    // })
 
     const handleDeleteItem = (e) => {
         if (e.target.name == "deleteBtn" ) {
@@ -24,7 +26,8 @@ const DisplayOrder = props =>  {
     }
 
     return (
-            <div> Total: {total} <br/>
+        <div className="col-lg-4">
+            Total: {total} <br/>
                 {selectedOrder.map( (item, index) => {
                     return <div style={{ border : 'solid'}}  onClick={ handleDeleteItem}>
                         {index + 1}:
@@ -33,8 +36,8 @@ const DisplayOrder = props =>  {
                         <button value={index} name="deleteBtn">DELETE</button>
                     </div>
                 })}
-                {selectedOrder.length > 0 ? <Button variant="success">Checkout</Button> : <p>Nothing selected yet</p> }
-            </div>
+                {selectedOrder.length > 0 ? <Button variant="success"><NavLink to={ROUTES.CHECKOUT} style={{color:'black'}}>CHECKOUT</NavLink></Button> : <p>Nothing selected yet</p> }
+        </div>
     );
 
 };

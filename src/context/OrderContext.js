@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import {CHEESEOPTIONS, DOUGH, SAUCE, SIZE} from "../data";
 
@@ -17,6 +17,7 @@ export const Provider = props => {
         children
     } = props;
 
+
     // Use State to keep the values
     const [selectedDough, setSelectedDough] = useState(initDough);
     const [selectedSize, setSelectedSize] = useState(initSize);
@@ -28,10 +29,10 @@ export const Provider = props => {
 
     const calcTotal = (order) => {
         let total = 0;
-        order.map ( item => {
-            total += SIZE[item.selectedDough][item.selectedSize] + CHEESEOPTIONS[item.selectedCheese] + SAUCE[item.selectedSauce] + 0.99 * item.selectedTopping.length
+        order.map( item => {
+            total += parseFloat(SIZE[item.selectedDough][item.selectedSize]) + parseFloat(CHEESEOPTIONS[item.selectedCheese]) + parseFloat(SAUCE[item.selectedSauce]) + 0.99 * parseFloat(item.selectedTopping.length)
         })
-        setTotal(total.toFixed(2))
+        return total.toFixed(2)
     }
 
 
