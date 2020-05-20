@@ -10,12 +10,14 @@ const DisplayOrder = props =>  {
         selectedOrder,
         total,
         setSelectedOrder,
-        calcTotal
+        calcTotal, setTotal
     } = selectedContext
     //
-    // useEffect( () => {
-    //     calcTotal(selectedOrder)
-    // })
+    useEffect( () => {
+        let orderTotal = calcTotal(selectedOrder)
+        setTotal(orderTotal)
+
+    })
 
     const handleDeleteItem = (e) => {
         if (e.target.name == "deleteBtn" ) {
@@ -36,7 +38,7 @@ const DisplayOrder = props =>  {
                         <button value={index} name="deleteBtn">DELETE</button>
                     </div>
                 })}
-                {selectedOrder.length > 0 ? <Button variant="success"><NavLink to={ROUTES.CHECKOUT} style={{color:'black'}}>CHECKOUT</NavLink></Button> : <p>Nothing selected yet</p> }
+                {selectedOrder.length > 0 ? <Button variant="primary"><NavLink to={ROUTES.CHECKOUT} style={{color:'black'}}>CHECKOUT</NavLink></Button> : <p>Nothing selected yet</p> }
         </div>
     );
 
