@@ -1,6 +1,6 @@
 import React, {useContext, useEffect} from 'react'
 import {Button} from "react-bootstrap";
-import {NavLink} from "react-router-dom";
+import {NavLink, useLocation} from "react-router-dom";
 import { OrderContext } from "../../context";
 import * as ROUTES from '../../consts/routes'
 
@@ -12,6 +12,8 @@ const DisplayOrder = props =>  {
         setSelectedOrder,
         calcTotal, setTotal
     } = selectedContext
+    const location = useLocation();
+    let orderSummary;
     //
     useEffect( () => {
         let orderTotal = calcTotal(selectedOrder)
@@ -26,6 +28,15 @@ const DisplayOrder = props =>  {
             setSelectedOrder([...selectedOrder])
         }
     }
+       if (selectedOrder.length > 0 && location.pathname == "/" ) {
+           orderSummary = <Button variant="primary"><NavLink to={ROUTES.CHECKOUT} style={{color:'black'}}>CHECKOUT</NavLink></Button>
+       }
+       if (selectedOrder.length == 0 && location.pathname == "/" ) {
+           orderSummary = <p>Nothing ordered yet</p>
+       }
+       if (selectedOrder.length == 0 && location.pathname != "/" ) {
+           orderSummary = <p>Nothing ordered yet, return to name page</p>
+       }
 
     return (
         <div className="col-lg-4">
@@ -38,7 +49,7 @@ const DisplayOrder = props =>  {
                         <button value={index} name="deleteBtn">DELETE</button>
                     </div>
                 })}
-                {selectedOrder.length > 0 ? <Button variant="primary"><NavLink to={ROUTES.CHECKOUT} style={{color:'black'}}>CHECKOUT</NavLink></Button> : <p>Nothing selected yet</p> }
+            {orderSummary}
         </div>
     );
 

@@ -1,6 +1,5 @@
 import React, {Component, useContext} from 'react';
 import AddressForm from "../components/AddressForm";
-import AddressForm1 from "../components/AddressForm";
 import PaymentForm from "../components/PaymentForm";
 import DisplayOrder from "../components/DisplayOrder";
 import {OrderContext} from "../context";
@@ -30,8 +29,6 @@ class CheckoutPage extends Component {
     }
 
         render() {
-
-
               return (
                   <>
                       <AddressForm/>

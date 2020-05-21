@@ -173,7 +173,7 @@ function AddressForm() {
             </Row>
             <Row>
                 <Col span={18} push={4}>
-                    <button type="submit" className="btn btn-primary">Submit</button>
+                    {/*<button type="submit" className="btn btn-primary">Submit</button>*/}
                     <button type="submit" className="btn btn-warning"><NavLink to={ROUTES.LANDING} style={{color:'black'}}>RETURN</NavLink></button>
                 </Col>
             </Row>

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./style.css";
+import {OrderContext} from "../../context/index";
 const styles = {
     name: {
         verticalAlign: "top",
@@ -29,20 +30,22 @@ const styles = {
     }
 };
 
+
 export default class PaymentForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
             cardBrand: "",
             nonce: undefined,
-            googlePay: false,
-            applePay: false,
+            googlePay: true,
+            applePay: true,
             masterpass: false
         };
         this.requestCardNonce = this.requestCardNonce.bind(this);
     }
 
     requestCardNonce() {
+        console.log('creating payment request')
         this.paymentForm.requestCardNonce();
     }
 
@@ -110,6 +113,7 @@ export default class PaymentForm extends Component {
                     return;
                 },
                 createPaymentRequest: () => {
+
                     return {
                         requestShippingAddress: false,
                         requestBillingInfo: true,
@@ -117,13 +121,13 @@ export default class PaymentForm extends Component {
                         countryCode: "US",
                         total: {
                             label: "MERCHANT NAME",
-                            amount: "100",
+                            amount: "0.1",
                             pending: false
                         },
                         lineItems: [
                             {
                                 label: "Subtotal",
-                                amount: "100",
+                                amount: "0.1",
                                 pending: false
                             }
                         ]
@@ -240,3 +244,4 @@ export default class PaymentForm extends Component {
     }
 }
 
+PaymentForm.contextType = OrderContext
